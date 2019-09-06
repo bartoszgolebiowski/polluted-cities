@@ -1,7 +1,6 @@
 import axios from 'axios'
 import {createQueryParams} from "../utils";
-
-const baseURL = 'https://en.wikipedia.org/w/api.php?origin=*';
+import {WIKIPEDIA_URL} from "../../constants/APIAdresses";
 
 const defaultParams = {
     format: 'json',
@@ -14,6 +13,6 @@ const defaultParams = {
 export const fetchCityDetails = (titles) => {
     const queryParams = Object.assign({}, defaultParams, {titles});
     const params = createQueryParams(queryParams);
-    return axios.get(`${baseURL}&${params}`);
+    return axios.get(`${WIKIPEDIA_URL}&${params}`);
 };
 

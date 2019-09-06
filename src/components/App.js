@@ -1,10 +1,19 @@
 import React from 'react';
-import '../styles/App.css';
+import {BrowserRouter, Route} from 'react-router-dom';
+import PollutedCities from '../containers/PollutedCities'
+import Header from '../components/Header'
+import Footer from '../components/Footer'
 
-function App() {
+import {HEADER_TEXT, FOOTER_TEXT} from "../constants/Inscriptions";
+
+const App = () => {
     return (
-        <div className="App">
-            APP
+        <div>
+            <Header inscription={HEADER_TEXT}/>
+            <BrowserRouter>
+                <Route component={PollutedCities} exact path="/"/>
+            </BrowserRouter>
+            <Footer />
         </div>
     );
 }
