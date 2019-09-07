@@ -1,21 +1,22 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {BrowserRouter, Route} from 'react-router-dom';
 import PollutedCities from '../containers/PollutedCities'
-import Header from '../components/Header'
-import Footer from '../components/Footer'
+import HeaderPollution from './HeaderPollution'
+import FooterPollution from './FooterPollution'
 
-import {HEADER_TEXT, FOOTER_TEXT} from "../constants/Inscriptions";
+import {HEADER_TEXT, FOOTER_TEXT} from "../constants/general";
+
 
 const App = () => {
     return (
         <div>
-            <Header inscription={HEADER_TEXT}/>
+            <HeaderPollution inscription={HEADER_TEXT}/>
             <BrowserRouter>
                 <Route component={PollutedCities} exact path="/"/>
             </BrowserRouter>
-            <Footer />
+            <FooterPollution inscription={FOOTER_TEXT}/>
         </div>
     );
-}
+};
 
 export default App;
