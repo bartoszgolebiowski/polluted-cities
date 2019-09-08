@@ -1,8 +1,8 @@
 import React from 'react'
 import {AutoComplete, Button, Form, Select} from "antd";
-import {COUNTRIES, COUNTRIES_CODE_MAP, PARAMETERS} from "../constants/general";
+import {COUNTRIES, COUNTRIES_CODE_MAP, PARAMETERS} from "../../constants/general";
 import PropTypes from "prop-types";
-import '../styles/PollutionForm.css'
+import '../../styles/PollutionForm.css'
 
 const {Option} = Select;
 

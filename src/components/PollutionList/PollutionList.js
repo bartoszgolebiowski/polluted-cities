@@ -1,9 +1,9 @@
 import React, {useState} from "react";
 import {Collapse} from 'antd';
 import PropTypes from "prop-types";
-import {fetchCityDetails} from "../services/wikipedia/wikipediaAPI";
-import {showNotification} from "../utils/general";
-import {ERROR, WIKIPEDIA_FETCH_ERR_MESSAGE, WIKIPEDIA_FETCH_ERR_TITLE} from "../constants/general";
+import {fetchCityDetails} from "../../services/wikipedia/wikipediaAPI";
+import {showNotification} from "../../utils/general";
+import {ERROR, WIKIPEDIA_FETCH_ERR_MESSAGE, WIKIPEDIA_FETCH_ERR_TITLE} from "../../constants/general";
 
 const {Panel} = Collapse;
 

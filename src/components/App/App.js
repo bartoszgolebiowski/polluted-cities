@@ -1,9 +1,9 @@
 import React from 'react';
 import {BrowserRouter, Route} from 'react-router-dom';
-import PollutedCities from '../containers/PollutedCities'
-import PollutionHeader from './PollutionHeader'
-import PollutionFooter from './PollutionFooter'
-import '../styles/App.css'
+import PollutedCities from '../../containers/PollutedCities'
+import PollutionHeader from '../PollutionHeader/PollutionHeader'
+import PollutionFooter from '../PollutionFooter/PollutionFooter'
+import '../../styles/App.css'
 
 const App = () => {
     return (

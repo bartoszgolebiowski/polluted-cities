@@ -2,9 +2,9 @@ import React, {useState, useEffect} from "react";
 import {Layout} from 'antd';
 
 import {ERROR, OPENAQ_FETCH_ERR_MESSAGE, OPENAQ_FETCH_ERR_TITLE} from "../constants/general";
-import PollutionForm from '../components/PollutionForm'
-import Descriptions from '../components/PollutionDescription'
-import PollutionList from '../components/PollutionList';
+import PollutionForm from '../components/PollutionForm/PollutionForm'
+import Descriptions from '../components/PollutionDescription/PollutionDescription'
+import PollutionList from '../components/PollutionList/PollutionList';
 import {fetchPollutionData} from '../services/openAQ/openaqApi';
 import {showNotification} from "../utils/general";
 import '../styles/PollutedCieties.css'

@@ -1,6 +1,6 @@
 import React from "react";
 import {Layout} from "antd";
-import '../styles/PollutionFooter.css'
+import '../../styles/PollutionFooter.css'
 import {FOOTER_TEXT} from "../constants/general";
 
 const {Footer} = Layout;
