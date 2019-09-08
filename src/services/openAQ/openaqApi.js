@@ -6,7 +6,7 @@ const LIMIT = 1000;
 const LATEST = '/latest';
 
 const defaultParams = {
-    limit: LIMIT
+    limit: LIMIT,
 };
 
 export const fetchPollutionData = (country, parameter) => {

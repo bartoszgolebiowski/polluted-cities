@@ -1,20 +1,17 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {BrowserRouter, Route} from 'react-router-dom';
 import PollutedCities from '../containers/PollutedCities'
-import HeaderPollution from './HeaderPollution'
-import FooterPollution from './FooterPollution'
-
-import {HEADER_TEXT, FOOTER_TEXT} from "../constants/general";
-
+import PollutionHeader from './PollutionHeader'
+import PollutionFooter from './PollutionFooter'
 
 const App = () => {
     return (
-        <div>
-            <HeaderPollution inscription={HEADER_TEXT}/>
+        <div style={{display: 'flex-box', flexDirection: 'column'}}>
+            <PollutionHeader />
             <BrowserRouter>
                 <Route component={PollutedCities} exact path="/"/>
             </BrowserRouter>
-            <FooterPollution inscription={FOOTER_TEXT}/>
+            <PollutionFooter/>
         </div>
     );
 };
