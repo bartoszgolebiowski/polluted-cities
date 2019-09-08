@@ -1,7 +1,13 @@
 .pollution-layout {
     background: #abcdef;
-    margin: 0 15%;
-    min-height: 840px;
+    margin: 0 10%;
+    min-height: 560px;
     border: 1px solid;
+}
+.pollution-top {
     text-align: center;
+    border: 1px solid;
+    min-height: 220px;
+    margin: 5% 30%;
+    background-color: #aaaaaa;
 }

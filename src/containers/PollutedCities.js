@@ -17,8 +17,9 @@ const PollutedCities = () => {
 
     useEffect(() => {
         const {country, parameter} = formData;
-        country && parameter
-        && fetchPollutionData(country, parameter)
+
+        country && parameter &&
+        fetchPollutionData(country, parameter)
             .then(res => setCities(res.data.results))
             .catch(() => showNotification(ERROR, OPENAQ_FETCH_ERR_TITLE, OPENAQ_FETCH_ERR_MESSAGE))
             .finally(() => setFormData({country: '', parameter: ''}));
@@ -26,10 +27,12 @@ const PollutedCities = () => {
 
     return (
         <Content className="pollution-layout">
-            <Descriptions/>
-            <PollutionForm
-                setFormData={setFormData}
-            />
+            <div className="pollution-top">
+                <Descriptions/>
+                <PollutionForm
+                    setFormData={setFormData}
+                />
+            </div>
             {cities.length !== 0 && <PollutionList
                 cities={cities}
             />}

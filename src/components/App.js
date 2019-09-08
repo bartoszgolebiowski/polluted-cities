@@ -3,11 +3,12 @@ import {BrowserRouter, Route} from 'react-router-dom';
 import PollutedCities from '../containers/PollutedCities'
 import PollutionHeader from './PollutionHeader'
 import PollutionFooter from './PollutionFooter'
+import '../styles/App.css'
 
 const App = () => {
     return (
-        <div style={{display: 'flex-box', flexDirection: 'column'}}>
-            <PollutionHeader />
+        <div>
+            <PollutionHeader/>
             <BrowserRouter>
                 <Route component={PollutedCities} exact path="/"/>
             </BrowserRouter>

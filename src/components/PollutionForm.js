@@ -1,7 +1,8 @@
 import React from 'react'
 import {AutoComplete, Button, Form, Select} from "antd";
 import {COUNTRIES, COUNTRIES_CODE_MAP, PARAMETERS} from "../constants/general";
-import {func} from "prop-types";
+import PropTypes from "prop-types";
+import '../styles/PollutionForm.css'
 
 const {Option} = Select;
 
@@ -9,9 +10,10 @@ const pollutionForm = (props) => {
     const {getFieldDecorator} = props.form;
 
     return (
-        <Form layout="inline" onSubmit={(event) => handleSubmit(props, event)}>
+        <Form className="pollution-form" layout="inline" onSubmit={(event) => handleSubmit(props, event)}>
             <Form.Item>
                 {getFieldDecorator('country', {
+                    initialValue: localStorage.getItem('country'),
                     rules: [{require: true, message: 'Please input country'}]
                 })(
                     <AutoComplete
@@ -25,9 +27,9 @@ const pollutionForm = (props) => {
             </Form.Item>
             <Form.Item>
                 {getFieldDecorator('parameter', {
-                    initialValue: PARAMETERS[0]
+                    initialValue: localStorage.getItem('parameter')
                 })(
-                    <Select>
+                    <Select className="pollution-select-input">
                         {PARAMETERS.map(singleParam =>
                             <Option key={singleParam} value={singleParam}>{singleParam}</Option>
                         )}
@@ -48,6 +50,8 @@ export const handleSubmit = (props, event) => {
     props.form.validateFields((err, values) => {
         const {country, parameter} = values;
         if (COUNTRIES.includes(country) && PARAMETERS.includes(parameter)) {
+            localStorage.setItem('country', country);
+            localStorage.setItem('parameter', parameter);
             props.setFormData({
                 country: COUNTRIES_CODE_MAP.get(country),
                 parameter
@@ -66,7 +70,7 @@ export const handleSubmit = (props, event) => {
 
 
 pollutionForm.propTypes = {
-    setFormData: func.isRequired
+    setFormData: PropTypes.func.isRequired
 };
 
 const PollutionForm = Form.create({name: 'pollution_form'})(pollutionForm);
