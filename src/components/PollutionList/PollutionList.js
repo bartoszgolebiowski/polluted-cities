@@ -1,12 +1,13 @@
 import React, {useState} from "react";
-import {Collapse} from 'antd';
+import {Collapse, Typography} from 'antd';
 import PropTypes from "prop-types";
 import {fetchCityDetails} from "../../services/wikipedia/wikipediaAPI";
 import {showNotification} from "../../utils/general";
 import {ERROR, WIKIPEDIA_FETCH_ERR_MESSAGE, WIKIPEDIA_FETCH_ERR_TITLE} from "../../constants/general";
+import './PollutionList.css'
 
 const {Panel} = Collapse;
-
+const {Title} = Typography;
 export const extractValuesAndCityNames = (cities, cityName) => {
     if (cities === undefined || cities.length === 0 || cityName === '' || cityName === undefined)
         return [];
@@ -90,6 +91,7 @@ const PollutionList = (props) => {
 
     return (
         <div>
+            <Title className="pollution-collapse-header">Top 10 most polluted cities</Title>
             <Collapse
                 onChange={(panel) => displayCityDescription(panel, selected, setSelected, wikiDescription, setWikiDescription)}>
                 {mostPollutedCities(props.cities).map((city, index) =>

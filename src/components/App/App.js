@@ -3,7 +3,7 @@ import {BrowserRouter, Route} from 'react-router-dom';
 import PollutedCities from '../../containers/PollutedCities'
 import PollutionHeader from '../PollutionHeader/PollutionHeader'
 import PollutionFooter from '../PollutionFooter/PollutionFooter'
-import '../../styles/App.css'
+import './App.css'
 
 const App = () => {
     return (

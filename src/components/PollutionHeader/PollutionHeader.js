@@ -1,6 +1,6 @@
 import React from "react";
 import {Layout} from 'antd';
-import '../../styles/PollutionHeader.css'
+import './PollutionHeader.css'
 import {HEADER_TEXT} from "../../constants/general";
 const {Header} = Layout;
 

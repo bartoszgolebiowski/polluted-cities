@@ -2,18 +2,20 @@ import React, {useState, useEffect} from "react";
 import {Layout} from 'antd';
 
 import {ERROR, OPENAQ_FETCH_ERR_MESSAGE, OPENAQ_FETCH_ERR_TITLE} from "../constants/general";
-import PollutionForm from '../components/PollutionForm/PollutionForm'
-import Descriptions from '../components/PollutionDescription/PollutionDescription'
+import PollutionDescriptions from '../components/PollutionCard/PollutionCard'
 import PollutionList from '../components/PollutionList/PollutionList';
 import {fetchPollutionData} from '../services/openAQ/openaqApi';
 import {showNotification} from "../utils/general";
-import '../styles/PollutedCieties.css'
+import './PollutedCities.css'
 
 const {Content} = Layout;
 
-const PollutedCities = () => {
-    const [formData, setFormData] = useState({country: '', parameter: ''});
-    const [cities, setCities] = useState([]);
+const PollutedCities = (props) => {
+    const formDataInit = props.formData ? props.formData : {country: '', parameter: ''};
+    const citiesInit = props.cities ? props.cities : [];
+
+    const [formData, setFormData] = useState(formDataInit);
+    const [cities, setCities] = useState(citiesInit);
 
     useEffect(() => {
         const {country, parameter} = formData;
@@ -27,12 +29,7 @@ const PollutedCities = () => {
 
     return (
         <Content className="pollution-layout">
-            <div className="pollution-top">
-                <Descriptions/>
-                <PollutionForm
-                    setFormData={setFormData}
-                />
-            </div>
+            <PollutionDescriptions setFormData={setFormData}/>
             {cities.length !== 0 && <PollutionList
                 cities={cities}
             />}

@@ -9,7 +9,6 @@ export const OPENAQ_FETCH_ERR_MESSAGE = 'Could not fetch data from openAQ servic
 export const WIKIPEDIA_FETCH_ERR_TITLE = 'wikipedia service error';
 export const WIKIPEDIA_FETCH_ERR_MESSAGE = 'Could not fetch city details from wikipedia service';
 
-export const DESCRIPTION_TITLE = 'Ranking';
-export const DESCRIPTION_1ST_ROW = 'Most polluted cities';
+export const DESCRIPTION = 'Choose country and parameter';
 export const HEADER_TEXT = 'Polluted Cities';
 export const FOOTER_TEXT = 'Respect the greenery';

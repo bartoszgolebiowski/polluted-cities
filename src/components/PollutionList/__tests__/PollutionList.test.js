@@ -95,10 +95,10 @@ describe('PollutionList unit tests', () => {
 
         it('generate correct input', () => {
             expect(generateHeaderResult).toStrictEqual(ACCORDIAN_HEADER)
-        })
+        });
         it('empty top10 array', () => {
             expect(generateHeaderResult2).toStrictEqual('')
-        })
+        });
     });
 });
 describe('PollutionList component test', () => {
@@ -106,9 +106,9 @@ describe('PollutionList component test', () => {
     describe('render one <Collapse>', () => {
         wrapper = shallow(<PollutionList cities={mockResponse.results}/>);
         expect(wrapper.find(Collapse).length).toBe(1)
-    })
+    });
     describe('render 10 <Panel>s', () => {
         wrapper = shallow(<PollutionList cities={mockResponse.results}/>);
         expect(wrapper.find(Panel).length).toBe(10)
-    })
+    });
 });

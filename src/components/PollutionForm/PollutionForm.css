@@ -1,0 +1,12 @@
+.pollution-select-input {
+    min-width: 80px
+}
+.ant-form-inline {
+    text-align: center;
+}
+.ant-form-item {
+    margin-right: 0 !important;
+}
+.ant-select-dropdown-menu-item{
+    min-width: 80px;
+}

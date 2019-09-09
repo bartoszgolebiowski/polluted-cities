@@ -2,18 +2,19 @@ import React from 'react'
 import {AutoComplete, Button, Form, Select} from "antd";
 import {COUNTRIES, COUNTRIES_CODE_MAP, PARAMETERS} from "../../constants/general";
 import PropTypes from "prop-types";
-import '../../styles/PollutionForm.css'
+import './PollutionForm.css'
 
 const {Option} = Select;
 
 export const processInput = (props, values) => {
     const {country, parameter} = values;
     if (COUNTRIES.includes(country) && PARAMETERS.includes(parameter)) {
+        const parameterTrim = parameter.trim();
         localStorage.setItem('country', country);
-        localStorage.setItem('parameter', parameter);
+        localStorage.setItem('parameter', parameterTrim);
         props.setFormData({
             country: COUNTRIES_CODE_MAP.get(country),
-            parameter
+            parameter: parameterTrim
         })
     } else if (!COUNTRIES.includes(country)) {
         props.form.setFields({
@@ -38,7 +39,7 @@ const pollutionForm = (props) => {
 
     return (
         <Form className="pollution-form" layout="inline" onSubmit={(event) => handleSubmit(props, event)}>
-            <Form.Item>
+            <Form.Item className="pollution-input">
                 {getFieldDecorator('country', {
                     initialValue: localStorage.getItem('country'),
                     rules: [{require: true, message: 'Please input country'}]
@@ -52,7 +53,7 @@ const pollutionForm = (props) => {
                     />,
                 )}
             </Form.Item>
-            <Form.Item>
+            <Form.Item className="pollution-input">
                 {getFieldDecorator('parameter', {
                     initialValue: localStorage.getItem('parameter'),
                     rules: [{require: true, message: 'Please input parameter'}]
@@ -64,7 +65,7 @@ const pollutionForm = (props) => {
                     </Select>
                 )}
             </Form.Item>
-            <Form.Item>
+            <Form.Item className="pollution-input">
                 <Button type="primary" htmlType="submit">
                     Find
                 </Button>

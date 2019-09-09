@@ -1,0 +1,8 @@
+.pollution-card-container {
+    padding: 30px;
+    margin: 0 auto;
+    position: relative;
+}
+.ant-card-bordered {
+    margin: 0 auto;
+}
