@@ -6,6 +6,33 @@ import '../../styles/PollutionForm.css'
 
 const {Option} = Select;
 
+export const processInput = (props, values) => {
+    const {country, parameter} = values;
+    if (COUNTRIES.includes(country) && PARAMETERS.includes(parameter)) {
+        localStorage.setItem('country', country);
+        localStorage.setItem('parameter', parameter);
+        props.setFormData({
+            country: COUNTRIES_CODE_MAP.get(country),
+            parameter
+        })
+    } else if (!COUNTRIES.includes(country)) {
+        props.form.setFields({
+            country: {value: country, errors: [new Error('Unhandled Country')]},
+        })
+    } else {
+        props.form.setFields({
+            parameter: {value: parameter, errors: [new Error('Unhandled Parameter')]},
+        })
+    }
+};
+
+export const handleSubmit = (props, event) => {
+    event.preventDefault();
+    props.form.validateFields((err, values) => {
+        processInput(props, values);
+    });
+};
+
 const pollutionForm = (props) => {
     const {getFieldDecorator} = props.form;
 
@@ -27,7 +54,8 @@ const pollutionForm = (props) => {
             </Form.Item>
             <Form.Item>
                 {getFieldDecorator('parameter', {
-                    initialValue: localStorage.getItem('parameter')
+                    initialValue: localStorage.getItem('parameter'),
+                    rules: [{require: true, message: 'Please input parameter'}]
                 })(
                     <Select className="pollution-select-input">
                         {PARAMETERS.map(singleParam =>
@@ -43,29 +71,6 @@ const pollutionForm = (props) => {
             </Form.Item>
         </Form>
     )
-};
-
-export const handleSubmit = (props, event) => {
-    event.preventDefault();
-    props.form.validateFields((err, values) => {
-        const {country, parameter} = values;
-        if (COUNTRIES.includes(country) && PARAMETERS.includes(parameter)) {
-            localStorage.setItem('country', country);
-            localStorage.setItem('parameter', parameter);
-            props.setFormData({
-                country: COUNTRIES_CODE_MAP.get(country),
-                parameter
-            })
-        } else if (!COUNTRIES.includes(country)) {
-            props.form.setFields({
-                country: {value: country, errors: [new Error('Unhandled Country')]},
-            })
-        } else {
-            props.form.setFields({
-                parameter: {value: parameter, errors: [new Error('Unhandled Parameter')]},
-            })
-        }
-    });
 };
 
 

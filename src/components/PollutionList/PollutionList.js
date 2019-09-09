@@ -8,6 +8,9 @@ import {ERROR, WIKIPEDIA_FETCH_ERR_MESSAGE, WIKIPEDIA_FETCH_ERR_TITLE} from "../
 const {Panel} = Collapse;
 
 export const extractValuesAndCityNames = (cities, cityName) => {
+    if (cities === undefined || cities.length === 0 || cityName === '' || cityName === undefined)
+        return [];
+
     return cities
         .filter(city => city['city'] === cityName)
         .map(city => {
@@ -20,12 +23,18 @@ export const extractValuesAndCityNames = (cities, cityName) => {
 };
 
 export const findCityWithHighestMeasurementValue = (cities, duplicatedCities) => {
+    if (cities === undefined || duplicatedCities === undefined || cities.length === 0 || duplicatedCities.length === 0)
+        return {};
+
     const maxValue = Math.max(...duplicatedCities.map(measurement => measurement['value']));
     const cityObject = duplicatedCities.find(measurement => measurement['value'] === maxValue);
     return cities.find(city => city['location'] === cityObject.location);
 };
 
 export const removeDuplicates = (cities) => {
+    if (cities === undefined || cities.length === 0)
+        return [];
+
     const citiesWithoutDuplicates = [];
     const citiesNames = new Set(cities.map(city => city['city']));
     for (const cityName of citiesNames) {
@@ -37,6 +46,9 @@ export const removeDuplicates = (cities) => {
 };
 
 export const mostPollutedCities = (cities) => {
+    if (cities === undefined || cities.length === 0)
+        return [];
+
     return removeDuplicates(cities)
         .sort((a, b) => b['measurements'][0]['value'] - a['measurements'][0]['value'])
         .slice(0, 10);
@@ -58,10 +70,14 @@ export const displayCityDescription = async (panel, selected, setSelected, wikiD
                 setWikiDescription(newWikiDescription)
             })
             .catch(() => showNotification(ERROR, WIKIPEDIA_FETCH_ERR_TITLE, WIKIPEDIA_FETCH_ERR_MESSAGE))
-            .finally(() => setSelected(selected.concat(panel)))
+            .finally(() => setSelected(selected.concat(selectedPanel)))
     }
 };
+
 export const generateHeader = (city, ranking) => {
+    if(city === undefined || city.length === 0 )
+        return "";
+
     const cityName = city['city'];
     const parameterValue = Math.max(...city['measurements'].map(measurement => measurement['value']));
     const unit = city['measurements'][0]['unit'];
