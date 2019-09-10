@@ -1,23 +1,21 @@
 import React from 'react'
-import {processInput} from '../PollutionForm'
-import {COUNTRIES_CODE_MAP} from "../../../constants/general";
-import sinon from 'sinon'
+import {AutoComplete, Form, Select} from 'antd'
 import {shallow} from "enzyme/build";
-import {mockResponse} from "../../../mocks/mockResponse";
-
+import sinon from 'sinon'
 import PollutionForm from "../PollutionForm";
-import {Form} from 'antd'
+import {processInput, handleSubmit} from '../PollutionForm'
+import {COUNTRIES_CODE_MAP} from "../../../constants/general";
 
-const setFormData = () => {
-};
 const props = {
     setFormData: (country, parameter) => {
     },
     form: {
         setFields: (parameter) => {
         },
+        getFieldDecorator: jest.fn(opts => c => c)
     }
 };
+
 const values = {country: 'Germany', parameter: 'pm25'};
 const values4 = {country: 'Germanyy', parameter: 'pm25'};
 const values5 = {country: 'Germany', parameter: 'pm225'};
@@ -61,5 +59,25 @@ describe('PollutionForm unit tests', () => {
             expect(parameter.value).toStrictEqual(values5.parameter);
             expect(setFormDataSpy.callCount).toBe(0);
         })
+    });
+
+    describe('PollutionForm component tests', () => {
+        let wrapper;
+
+        beforeEach(() => {
+            wrapper = shallow(<PollutionForm setFormData={props.setFormData} form={props.form}/>).shallow();
+        });
+        it('render 1 <Form>', () => {
+            expect(wrapper.find(Form).length).toBe(1)
+        });
+        it('render 3 <Form.Item>', () => {
+            expect(wrapper.find(Form.Item).length).toBe(3)
+        });
+        it('render 1 <AutoComplete>', () => {
+            expect(wrapper.find(AutoComplete).length).toBe(1)
+        });
+        it('render 1 <Select>', () => {
+            expect(wrapper.find(Select).length).toBe(1)
+        });
     });
 });

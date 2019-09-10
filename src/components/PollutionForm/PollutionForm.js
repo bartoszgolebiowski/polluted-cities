@@ -34,6 +34,12 @@ export const handleSubmit = (props, event) => {
     });
 };
 
+const getInitialValue = (key, defaultValue) => {
+    return localStorage.getItem(key) === null ?
+        defaultValue :
+        localStorage.getItem(key);
+};
+
 const pollutionForm = (props) => {
     const {getFieldDecorator} = props.form;
 
@@ -41,7 +47,7 @@ const pollutionForm = (props) => {
         <Form className="pollution-form" layout="inline" onSubmit={(event) => handleSubmit(props, event)}>
             <Form.Item className="pollution-input">
                 {getFieldDecorator('country', {
-                    initialValue: localStorage.getItem('country'),
+                    initialValue: getInitialValue('country','Poland'),
                     rules: [{require: true, message: 'Please input country'}]
                 })(
                     <AutoComplete
@@ -55,7 +61,7 @@ const pollutionForm = (props) => {
             </Form.Item>
             <Form.Item className="pollution-input">
                 {getFieldDecorator('parameter', {
-                    initialValue: localStorage.getItem('parameter'),
+                    initialValue: getInitialValue('parameter','pm25'),
                     rules: [{require: true, message: 'Please input parameter'}]
                 })(
                     <Select className="pollution-select-input">
